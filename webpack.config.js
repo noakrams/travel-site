@@ -4,11 +4,11 @@ const postCSSPlugins = [
     require('postcss-mixins'),
     require('postcss-simple-vars'),
     require('postcss-nested'),
-    require('autoprefixer')
+    require('autoprefixer'),
 ]
 
 module.exports = {
-    entry: './app/assets/images/scripts/App.js',
+    entry: './app/assets/scripts/App.js',
     output: {
         filename: 'bundled.js',
         path: path.resolve(__dirname, 'app')
@@ -28,7 +28,12 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ['style-loader','css-loader', {loader: 'postcss-loader', options: {plugins: postCSSPlugins}}]
+            },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader'
             }
         ]
-    }
+    },
+
 }
